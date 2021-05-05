@@ -7,13 +7,16 @@ import { LoadingComponent } from './loading/loading.component';
 
 
 @NgModule({
-  declarations: [
-    FormFieldComponent,
-    LoadingComponent
-  ],
-  imports: [
-    CommonModule,
-    SharedRoutingModule
-  ]
+    declarations: [
+        FormFieldComponent,
+        LoadingComponent
+    ],
+    exports: [
+        LoadingComponent
+    ],
+    imports: [
+        CommonModule,
+        SharedRoutingModule
+    ]
 })
 export class SharedModule { }

@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 export class LogoutComponent implements OnInit, OnDestroy {
 
   logoutSubscription: Subscription = new Subscription();
+  loading = false;
 
   constructor(private userService: UserServiceService, private router: Router) {
   }
@@ -19,9 +20,14 @@ export class LogoutComponent implements OnInit, OnDestroy {
   }
 
   logout(): void {
+    this.loading = true;
     this.userService.logout().subscribe(data => {
       if (data === true) {
-        this.router.navigateByUrl('');
+        setTimeout(() =>
+          {
+            this.router.navigate(['/']);
+          },
+          1000);
       }
     });
   }
