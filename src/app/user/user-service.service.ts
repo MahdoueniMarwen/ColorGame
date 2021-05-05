@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Credentials} from './models/credentials';
 import {of, Observable} from 'rxjs';
 import {Router} from '@angular/router';
@@ -8,17 +8,19 @@ import {Router} from '@angular/router';
 })
 export class UserServiceService {
 
-  constructor(private router: Router) { }
+  constructor() {
+  }
 
-  login(c: Credentials): Observable<boolean>{
+  login(c: Credentials): Observable<boolean> {
 
     if (c.email === 'b2m@dmin' && c.password === '12345') {
-      this.router.navigateByUrl('');
-      return of(false);
-    } else {
       return of(true);
+    } else {
+      return of(false);
     }
+  }
 
-
+  logout(): Observable<boolean> {
+    return of(true);
   }
 }
