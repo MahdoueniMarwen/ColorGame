@@ -4,6 +4,8 @@ import {Credentials} from '../models/credentials';
 import {UserServiceService} from '../user-service.service';
 import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
+import {LocalStorageService} from 'ngx-webstorage';
+import {User} from '../models/user';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginSubscription: Subscription = new Subscription();
 
 
-  constructor(private fb: FormBuilder, private userService: UserServiceService, private router: Router) {
+  constructor(private fb: FormBuilder, private userService: UserServiceService, private router: Router, private localStorage: LocalStorageService) {
     this.loginGroup = this.fb.group({
       email: ['b2m@dmin', [Validators.required, Validators.email, Validators.minLength(6)]],
       password: ['12345', [Validators.required, Validators.minLength(5)]],
@@ -42,6 +44,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginSubscription = this.userService.login(this.credentials).subscribe(data => {
       this.login = data;
       if (this.login === true) {
+        this.localStorage.store('user' , this.credentials.email);
         this.router.navigateByUrl('');
       }
     });
