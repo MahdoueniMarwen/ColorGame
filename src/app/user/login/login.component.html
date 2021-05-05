@@ -1,1 +1,34 @@
-<p>login works!</p>
+<form [formGroup]="loginGroup" (ngSubmit)="onSubmit()">
+<h1>Login</h1>
+ <div class="alert alert-danger"  [hidden]="!login">Error: invalid credential</div>
+
+<label for="email">Email</label>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1"><span class="fa fa-at"></span></span>
+  </div>
+  <input type="text" required="required" formControlName="email" name="email" class="form-control" placeholder="Email"
+         aria-label="Username" aria-describedby="basic-addon1" id="email" [ngClass]="{ 'is-invalid': f.email.invalid && f.email.touched,
+                                                                                                                  'is-valid': f.email.valid && f.email.touched}">
+  <div *ngIf="f.email.errors" class="invalid-feedback">
+    <div *ngIf="f.email.errors.required">required : {{f.email.invalid}} </div>
+    <div *ngIf="f.email.errors.email">email : {{f.email.invalid}}</div>
+    <div *ngIf="f.email.errors.minlength">minlength:"requiredLength": 6, "actualLength":{{loginGroup.value.email.length}} </div>
+  </div>
+</div>
+
+<label for="password">Password</label>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon2"><span class="fa fa-lock"></span></span>
+  </div>
+  <input type="password" class="form-control" formControlName="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" id="password"
+         [ngClass]="{ 'is-invalid': f.password.invalid && f.password.touched,'is-valid': f.password.valid && f.password.touched}">
+  <div *ngIf="f.password.errors" class="invalid-feedback">
+    <div *ngIf="f.password.errors.required">required : true </div>
+    <div *ngIf="f.password.errors.minlength">Longueur min 5 caractères  </div>
+  </div>
+</div>
+
+  <button class="btn btn-primary" type="submit" [disabled]="!loginGroup.valid">Login</button>
+</form>
