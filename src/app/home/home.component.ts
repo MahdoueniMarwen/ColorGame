@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LocalStorageService} from 'ngx-webstorage';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  email = null;
+  constructor(private localStorage: LocalStorageService) { }
 
   ngOnInit(): void {
+    this.email = this.localStorage.retrieve('user');
   }
 
 }

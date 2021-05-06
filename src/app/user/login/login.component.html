@@ -1,6 +1,7 @@
-<form [formGroup]="loginGroup" (ngSubmit)="onSubmit()">
 <h1>Login</h1>
- <div class="alert alert-danger"  [hidden]="!login">Error: invalid credential</div>
+<div class="alert alert-danger"  [hidden]="!login">Error: invalid credential</div>
+
+<form [formGroup]="loginGroup" (ngSubmit)="onSubmit()" *ngIf="!loading">
 
 <label for="email">Email</label>
 <div class="input-group mb-3">
@@ -32,3 +33,5 @@
 
   <button class="btn btn-primary" type="submit" [disabled]="!loginGroup.valid">Login</button>
 </form>
+<app-loading [loading]="loading">
+</app-loading>

@@ -1,1 +1,37 @@
-<p>new works!</p>
+<h1>Create Game</h1>
+
+<form class="row" [formGroup]="tableGroup">
+  <div class="row col-md-12">
+    <div class="col-md-6">
+      <label>rows</label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"><span class="fa fa-sort-numeric-asc"></span></span>
+        </div>
+        <input type="number" formControlName="rows" required="required" class="form-control" [(ngModel)]="table.rows"
+               aria-label="rows" aria-describedby="basic-addon1" id="rows"
+               [ngClass]="{ 'is-invalid': f.rows.invalid && f.rows.valueChanges,'is-valid': f.rows.valid && f.rows.valueChanges}" (change)="drawGrid()">
+
+        <div *ngIf="f.rows.errors" class="invalid-feedback">
+          <div *ngIf="f.rows.errors.min">min : "min":1, "actual": {{table.rows}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label>cols</label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon2"><span class="fa fa-sort-numeric-asc"></span></span>
+        </div>
+        <input type="number" formControlName="cols" required="required" class="form-control" [(ngModel)]="table.cols"
+               aria-label="cols" aria-describedby="basic-addon1" id="cols"
+               [ngClass]="{ 'is-invalid': f.cols.invalid && f.cols.valueChanges,'is-valid': f.cols.valid && f.cols.valueChanges}" (change)="drawGrid()">
+
+        <div *ngIf="f.cols.errors" class="invalid-feedback">
+          <div *ngIf="f.cols.errors.min">min : "min":1, "actual": {{table.cols}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+

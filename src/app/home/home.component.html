@@ -1,5 +1,7 @@
 <h1>Home</h1>
 
-<button class="btn btn-primary" routerLink="/user/login">Login</button>
+<button class="btn btn-primary" routerLink="/user/login" *ngIf="email===null">Login</button>
+<button class="btn btn-primary" routerLink="/game/new" *ngIf="email!==null">New game</button>
+
 
 
